@@ -13,6 +13,9 @@ namespace p28
         public GameObject explosionPrefab;
         private GameObject _explosionObj;
 
+        // Player Object
+        public GameObject player;
+
         // Initial position and rotation of the parts of the object
         private List<Vector3> _initPos = new List<Vector3>();
         private List<Quaternion> _initRot = new List<Quaternion>();
@@ -58,6 +61,7 @@ namespace p28
                 rb.velocity = v;
             }
             _explosionObj.SetActive(true);
+            player.GetComponent<PlayerDisplay>().DestroyEffect();
         }
 
         /// <summary>
@@ -74,6 +78,7 @@ namespace p28
                 i++;
             }
             _explosionObj.SetActive(false);
+            player.GetComponent<PlayerDisplay>().RestoreEffect();
         }
 
 
@@ -83,11 +88,13 @@ namespace p28
         /// </summary>
         private void Update()
         {
+            // TODO > change with focus value
             if (Input.GetKeyDown(KeyCode.T) && _inRange)
             {
                 Debug.Log("boom");
                 DestroyObject();
             }
+            // TODO > change with focus value
             if (Input.GetKeyDown(KeyCode.R) && _inRange)
             {
                 Debug.Log("tada");
