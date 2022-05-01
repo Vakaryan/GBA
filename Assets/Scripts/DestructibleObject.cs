@@ -88,14 +88,27 @@ namespace p28
         /// </summary>
         private void Update()
         {
+            Debug.Log("Focus level " + BCIControlGBA.instance.focusLevel);
             // TODO > change with focus value
-            if (Input.GetKeyDown(KeyCode.T) && _inRange)
+            /*if (Input.GetKeyDown(KeyCode.T) && _inRange)
             {
                 Debug.Log("boom");
                 DestroyObject();
             }
             // TODO > change with focus value
             if (Input.GetKeyDown(KeyCode.R) && _inRange)
+            {
+                Debug.Log("tada");
+                RestoreObject();
+            }*/
+            // TODO > change with focus value
+            if (BCIControlGBA.instance.focusLevel > 4 && _inRange)
+            {
+                Debug.Log("boom");
+                DestroyObject();
+            }
+            // TODO > change with focus value
+            if (BCIControlGBA.instance.focusLevel < 1 && _inRange)
             {
                 Debug.Log("tada");
                 RestoreObject();
