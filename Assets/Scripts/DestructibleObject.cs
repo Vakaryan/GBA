@@ -9,6 +9,10 @@ namespace p28
     // Destructible object class
     public class DestructibleObject : MonoBehaviour
     {
+        // Explosion effect prefab
+        public GameObject explosionPrefab;
+        private GameObject _explosionObj;
+
         // Initial position and rotation of the parts of the object
         private List<Vector3> _initPos = new List<Vector3>();
         private List<Quaternion> _initRot = new List<Quaternion>();
@@ -37,6 +41,8 @@ namespace p28
                     _parts.Add(rb);
                 }
             }
+            _explosionObj = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            _explosionObj.SetActive(false);
         }
 
 
@@ -51,6 +57,7 @@ namespace p28
                 Vector3 v = new Vector3(Random.Range(0, 100), Random.Range(0, 100), Random.Range(0, 100));
                 rb.velocity = v;
             }
+            _explosionObj.SetActive(true);
         }
 
         /// <summary>
@@ -66,6 +73,7 @@ namespace p28
                 obj.rotation = _initRot[i];
                 i++;
             }
+            _explosionObj.SetActive(false);
         }
 
 
@@ -101,7 +109,7 @@ namespace p28
         {
             if (other.tag == "Player")
             {
-                _inRange = true;
+                _inRange = false;
                 GetComponent<Outline>().OutlineColor = Color.white;
             }
         }

@@ -33,6 +33,7 @@ namespace p28
         {
             yield return new WaitForSeconds(3);
             startingPanel.SetActive(false);
+            SoundManager.Instance.PlayBackgroundMusic();
         }
     }
 }
