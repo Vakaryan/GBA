@@ -36,19 +36,19 @@ namespace p28
         {
             yield return new WaitForSeconds(3);
             startingPanel.SetActive(false);
-            //SoundManager.Instance.PlayBackgroundMusic();
+            SoundManager.Instance.PlayBackgroundMusic();
             focusGauge.gameObject.SetActive(true);
         }
 
 
         /// <summary>
         /// Set the gauge to the set focus
-        /// Values go between 0 and 5
+        /// Values go between 0 and 100
         /// </summary>
         /// <param name="focusRate"></param>
         public void DisplayFocus(int focusRate)
         {
-            int val = Mathf.Clamp(focusRate, 0, 5);
+            int val = Mathf.Clamp(focusRate, 0, 100);
             focusGauge.value = val;
         }
     }

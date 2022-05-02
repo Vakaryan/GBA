@@ -102,13 +102,13 @@ namespace p28
                 RestoreObject();
             }*/
             // TODO > change with focus value
-            if (BCIControlGBA.instance.focusLevel > 4 && _inRange)
+            if (BCIControlGBA.instance.focusLevel > 90 && _inRange)
             {
                 Debug.Log("boom");
                 DestroyObject();
             }
             // TODO > change with focus value
-            if (BCIControlGBA.instance.focusLevel < 1 && _inRange)
+            if (BCIControlGBA.instance.focusLevel < 15 && _inRange)
             {
                 Debug.Log("tada");
                 RestoreObject();

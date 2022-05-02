@@ -38,9 +38,9 @@ public class BCIControlGBA : MonoBehaviour
 
     void Start()
     {
-
-        udpServer = new UdpClient(49295);
-        remoteEP = new IPEndPoint(IPAddress.Any, 49295);
+        
+        //udpServer = new UdpClient("Put UDP Number Here");
+        //remoteEP = new IPEndPoint(IPAddress.Any, "Put UDP Number Here");
 
         t = new Thread(() => {
             while (true)
@@ -61,24 +61,32 @@ public class BCIControlGBA : MonoBehaviour
                 transformPosition[1] = 0;
             }
         */
+
+
+        StartCoroutine(DataUpdate());
+    }
+
+    IEnumerator DataUpdate()
+    {
+        yield return new WaitForSeconds(1f);
         currentFocus = transformPosition[1];
         int focusUpdate = 0;
         if (currentFocus < previousFocus)
         {
-            focusUpdate = -1;
+            focusUpdate = -2;
         }
         else
         {
             focusUpdate = 1;
         }
-        focusLevel = Mathf.Clamp(focusLevel + focusUpdate, 0, 5);
+        focusLevel = Mathf.Clamp(focusLevel + focusUpdate, 0, 100);
         previousFocus = currentFocus;
-        /*Debug.Log("Focus update " + focusUpdate);
+        Debug.Log("Focus update " + focusUpdate);
         Debug.Log("Focus level " + focusLevel);
         Debug.Log("Current focus " + currentFocus);
-        Debug.Log("Previous focus " + previousFocus);*/
+        Debug.Log("Previous focus " + previousFocus);
         p28.UIManager.Instance.DisplayFocus(focusLevel);
-
+        yield return new WaitForSeconds(1f);
     }
 
     private void OnApplicationQuit()
